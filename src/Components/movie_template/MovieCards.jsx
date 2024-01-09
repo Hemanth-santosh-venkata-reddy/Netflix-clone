@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MovieCards.css";
-import Tabs from "@mui/material/Tabs";
+import Tabs, { tabsClasses } from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -12,8 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import PropTypes from "prop-types";
-import MovieHeader from "./MovieHeader";
-
+import useMediaQuery from '@mui/material/useMediaQuery';
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -53,7 +52,7 @@ function MovieCards({ movies, handlesearch ,setMovies}) {
   const [genre, setGenre] = useState("all");
   // const [movies, setMovies] = useState(moviesDataata);
   const [sort, setSort] = useState("newest");
-
+  const isMobile = useMediaQuery('(max-width:1024px)');
   const tabs = [
     { tab: "ALL", genre: "all" },
     { tab: "DOCUMENTRY", genre: "documentry" },
@@ -101,8 +100,14 @@ function MovieCards({ movies, handlesearch ,setMovies}) {
                   <Tabs
                     value={value}
                     onChange={handleChange}
-                    aria-label="basic tabs example"
-                    sx={{ borderColor: "divider" }}
+                    variant={isMobile ? 'scrollable' : 'standard'}
+                    scrollButtons={isMobile ? 'auto' : false}
+                    aria-label="visible arrows tabs example"
+                    sx={{
+                      [`& .${tabsClasses.scrollButtons}`]: {
+                        '&.Mui-disabled': { opacity: 0.3 },
+                      },
+                    }}
                   >
                     {tabs.map((t, i) => (
                       <Tab

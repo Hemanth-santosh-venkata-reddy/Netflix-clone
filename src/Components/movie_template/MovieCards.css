@@ -49,6 +49,12 @@ width: 84% !important;
   .movie-card .css-m5hdmq-MuiInputBase-root-MuiInput-root-MuiSelect-root:before{
    border-bottom: 1px solid white; 
   }
+  .css-ptiqhd-MuiSvgIcon-root{
+    color:white;
+  }
+  @media (max-width: 599.95px){
+    .css-ulxgan-MuiTabs-root .MuiTabs-scrollButtons{display: flex !important;}
+  }
   @media  (max-width: 1200px){
     .css-dkd71f-MuiGrid2-root{
       justify-content: center;
